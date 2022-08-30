@@ -3,11 +3,11 @@
   <title>Horik&#39;s Blog</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="http://blog.horik.cn/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>1985-10-26T16:15:00.000Z</updated>
-  <id>http://example.com/</id>
+  <link href="http://blog.horik.cn/"/>
+  <updated>1985-10-26T08:15:00.000Z</updated>
+  <id>http://blog.horik.cn/</id>
   
   <author>
     <name>Horik</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2022/hello-world/"/>
-    <id>http://example.com/2022/hello-world/</id>
+    <link href="http://blog.horik.cn/2022/08/29/hello-world/"/>
+    <id>http://blog.horik.cn/2022/08/29/hello-world/</id>
     <published>2022-08-29T09:20:25.689Z</published>
-    <updated>1985-10-26T16:15:00.000Z</updated>
+    <updated>1985-10-26T08:15:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank">GitHub</a>.</p><h2 id="quick-start">Quick Start<a title="#quick-start" href="#quick-start"></a></h2><h3 id="create-a-new-post">Create a new post<a title="#create-a-new-post" href="#create-a-new-post"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank">Writing</a></p><h3 id="run-server">Run server<a title="#run-server" href="#run-server"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank">Server</a></p><h3 id="generate-static-files">Generate static files<a title="#generate-static-files" href="#generate-static-files"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites<a title="#deploy-to-remote-sites" href="#deploy-to-remote-sites"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank">Deployment</a></p>]]></content>
     
