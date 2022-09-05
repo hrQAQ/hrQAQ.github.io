@@ -75,7 +75,7 @@ profile:
   email: hr.mail.qaq@gmail.com
 
   # You can set Avatar URL directly
-  avatar: https://self-image-storage.oss-cn-beijing.aliyuncs.com/blog/avatar.png
+  avatar: http://oss.horik.cn/blog/avatar.png
 
   bio: 一个逐渐丧失语言能力的人
 
@@ -393,7 +393,7 @@ plugins:
   # By default script will be injected into <body>, and style will be injected into <head>
   # In general, script or style depends on their ext name.
   # - xxx.css
-  - //netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+  - http://oss.horik.cn/css/font-awesome.min.css
   # - xxx.jss
 
   # Dynamic inject html snippet
@@ -404,12 +404,11 @@ plugins:
     # template: snippets/snippet-1.html
   - position: sidebar
     template: |
-      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <script async src="http://oss.horik.cn/js/busuanzi.pure.mini.js"></script>
 
 
   # inside 主题没有引入 jQuery 框架，需要手动引入
   - //cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js
-  - //cdn1.lncld.net/static/js/3.0.4/av-min.js
   # 引用本地 source/lib 路径下的 valine.js 文件
   # - lib/valine.js
   # 引用 CDN 上的 valine.js 文件

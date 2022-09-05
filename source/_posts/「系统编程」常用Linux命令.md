@@ -2,7 +2,7 @@
 title: 「系统编程」常用Linux命令
 date: 2022-09-04 01:10:12
 categories: 系统编程
-thumbnail: https://images.unsplash.com/photo-1629654291663-b91ad427698f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bGludXh8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60
+thumbnail: http://oss.horik.cn/blog/header-Linux%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80.avif
 tags:
     - Linux基础
 ---
