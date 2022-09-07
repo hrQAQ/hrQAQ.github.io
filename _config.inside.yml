@@ -26,7 +26,7 @@ appearance:
   # 字体设置
   font:
     # 字体 CSS 文件的 URL
-    url: //cdn.jsdelivr.net/gh/fiteen/fiteen.github.io@v0.1.0/font.css
+    url: //cdn.jsdelivr.net/gh/fiteen/fiteen.github.io@v0.1.0/
 
     # 基础字体，作用于 body 元素
     base: "'Josefin Sans', 'PingFang SC', Microsoft YaHei"
@@ -267,10 +267,10 @@ copyright:
     rel=\"external nofollow\" target=\"_blank\">CC BY-NC-ND 4.0</a>)
 
   # Display published date, default to `false`
-  published: false
+  published: true
 
   # Display updated date, default to `false`
-  updated: false
+  updated: true
 
   # Custom text, override above settings
   # custom: my copyright
