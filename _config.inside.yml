@@ -75,7 +75,7 @@ profile:
   email: hr.mail.qaq@gmail.com
 
   # You can set Avatar URL directly
-  avatar: http://oss.horik.cn/blog/avatar.png
+  avatar: https://oss.horik.cn/blog/avatar.png
 
   bio: 一个逐渐丧失语言能力的人
 
@@ -393,7 +393,7 @@ plugins:
   # By default script will be injected into <body>, and style will be injected into <head>
   # In general, script or style depends on their ext name.
   # - xxx.css
-  - http://oss.horik.cn/css/font-awesome.min.css
+  - https://oss.horik.cn/css/font-awesome.min.css
   # - xxx.jss
 
   # Dynamic inject html snippet
@@ -404,7 +404,7 @@ plugins:
     # template: snippets/snippet-1.html
   - position: sidebar
     template: |
-      <script async src="http://oss.horik.cn/js/busuanzi.pure.mini.js"></script>
+      <script async src="https://oss.horik.cn/js/busuanzi.pure.mini.js"></script>
 
 
   # inside 主题没有引入 jQuery 框架，需要手动引入
