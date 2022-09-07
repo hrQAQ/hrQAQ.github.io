@@ -26,7 +26,7 @@ appearance:
   # 字体设置
   font:
     # 字体 CSS 文件的 URL
-    url: //cdn.jsdelivr.net/gh/fiteen/fiteen.github.io@v0.1.0/font.css
+    url: //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/5a5267bb-9936-4a71-ab24-6ee2da219dbd.css
 
     # 基础字体，作用于 body 元素
     base: "'Josefin Sans', 'PingFang SC', Microsoft YaHei"
@@ -404,16 +404,14 @@ plugins:
     # template: snippets/snippet-1.html
   - position: sidebar
     template: |
-      <script async src="https://oss.horik.cn/js/busuanzi.pure.mini.js"></script>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-
+  # Valine 评论
   # inside 主题没有引入 jQuery 框架，需要手动引入
   - //cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js
-  - //cdn.jsdelivr.net/gh/fiteen/fiteen.github.io@v0.1.7/av-min.js
-  # 引用本地 source/lib 路径下的 valine.js 文件
-  # - lib/valine.js
+  - //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/e64f19ed-9d0a-4f9f-a45d-68f5cbb48776.js
   # 引用 CDN 上的 valine.js 文件
-  - //cdn.jsdelivr.net/gh/fiteen/fiteen.github.io@v0.1.0/valine.js
+  - //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/8851b28c-a68e-48b4-8043-65bf00db08f7.js
   - position: comments
     template: |
       <div id="vcomment"></div>
