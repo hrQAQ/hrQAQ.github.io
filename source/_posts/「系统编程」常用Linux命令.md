@@ -2,7 +2,7 @@
 title: 「系统编程」常用Linux命令
 date: 2022-09-04 01:10:12
 categories: 系统编程
-thumbnail: https://oss.horik.cn/blog/header-Linux%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80.avif
+thumbnail: https://oss.horik.cn/PicGo/header-linux-basicskill.jpg
 tags:
     - Linux基础
 ---

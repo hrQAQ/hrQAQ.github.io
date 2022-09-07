@@ -393,7 +393,7 @@ plugins:
   # By default script will be injected into <body>, and style will be injected into <head>
   # In general, script or style depends on their ext name.
   # - xxx.css
-  - https://oss.horik.cn/css/font-awesome.min.css
+  - //netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
   # - xxx.jss
 
   # Dynamic inject html snippet
@@ -404,13 +404,13 @@ plugins:
     # template: snippets/snippet-1.html
   - position: sidebar
     template: |
-      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      <script async src="https://oss.horik.cn/blog/busuanzi.pure.mini.js"></script>
+    # <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  # jQery
+  - //cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js
 
   # Valine 评论
-  # inside 主题没有引入 jQuery 框架，需要手动引入
-  - //cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js
   - //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/e64f19ed-9d0a-4f9f-a45d-68f5cbb48776.js
-  # 引用 CDN 上的 valine.js 文件
   - //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/8851b28c-a68e-48b4-8043-65bf00db08f7.js
   - position: comments
     template: |
@@ -419,9 +419,9 @@ plugins:
         new Valine({
           el: '#vcomment',
           lang: 'en',
-          admin_email: 'Your EMAIL',
-          appId: 'Your APP ID',
-          appKey: 'Your APP KEY',
+          admin_email: '664128042@qq.com',
+          appId: '5w8cMoOb6Q1lK4cuVTax9Fjf-gzGzoHsz',
+          appKey: 'atRTMR3qHDWw4tDXACkHBU5e',
           placeholder: 'Write a Comment',
           emoticon_url:'https://cdn.jsdelivr.net/gh/fiteen/fiteen.github.io@0.1.0/alu',
           emoticon_list:["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
