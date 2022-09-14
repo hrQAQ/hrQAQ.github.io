@@ -19,7 +19,7 @@ GNU 工程开发了大量用于 Unix 的自由软件工具，其中**GNU工具�
 >
 > “GNU”这个名字是“GNU's Not Unix”的递归首字母缩写词。“GNU”的发音为*g'noo*，只有一个音节，发音很像“grew”，但需要把其中的*r*音替换为*n*音。
 
-本文主要对GNU工具链中的编译套件（gcc），调试工具（gdb），构建和管理工具（make）进行入门级别的介绍。
+这篇文章是对GNU工具链中的编译套件（gcc），调试工具（gdb），构建和管理工具（make）的常用功能陈列。其实网上已经有很多这种总结帖子了，按照不重复造轮子的原则，我其实不应该花时间来做这个总结的。但我这刚开博客坑没几天，好歹得有点产出吧（笑，写写这种东西也不费事儿，纯当写memo备忘了。另外，如果你想上手工具的话，最好的办法是先有个大概了解，心里有谱了就可以上手用了，需要用什么再查什么。事实上，读or写这种文档就像是学英语背牛津词典一样，味同嚼蜡 >\_< （当然也很感谢为中文文档做贡献的前辈）
 
 ## GCC Compiler
 
@@ -169,7 +169,7 @@ gdb test.out test.out-core # 进行调试
 # 启动gdb 再选择需要调试的文件
 # 先启动gdb后执行file filename命令
 ~$> gdb
-~$> file filename
+(gdb) file filename
 
 # 启动gdb的同时装入可执行的程序
 ~$> gdb filename
@@ -181,26 +181,73 @@ gdb test.out test.out-core # 进行调试
 
 - 保留gdb命令日志
 
-	如果你想把GDB命令输出到一个文件里，有以下的命令与此相关（如果你看不懂下面的命令，来给我加点阅读量吧：[The Missing Semester of Computer Science ---- Linux 命令基础](https://blog.horik.cn/2022/09/04/%E3%80%8C%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E3%80%8D%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4#the-missing-semester-of-computer-science------linux-%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80)）
+	如果你想把GDB命令输出到一个文件里，有以下的命令与此相关（如果你看不懂下面的命令，或许可以在这里找到一点帮助：[The Missing Semester of Computer Science ---- Linux 命令基础](https://blog.horik.cn/2022/09/04/%E3%80%8C%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E3%80%8D%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4#the-missing-semester-of-computer-science------linux-%E5%91%BD%E4%BB%A4%E5%9F%BA%E7%A1%80)）
 
 	```shell
-	set logging on
-	set logging off
-	set logging file <filename>
-	set logging overwrite [on|off] //默认会追加到logfile里 
-	set logging redirect [on|off] //默认GDB输出会在terminal和logfile里显示，用redirect让它只在logfile里显示
-	show logging
+	(gdb) set logging on
+	(gdb) set logging off
+	(gdb) set logging file <filename>
+	(gdb) set logging overwrite [on|off] //默认会追加到logfile里 
+	(gdb) set logging redirect [on|off] //默认GDB输出会在terminal和logfile里显示，用redirect让它只在logfile里显示
+	(gdb) show logging
 	```
 
 - 运行调试程序
 
 	```shell
-	run	# 开始运行
-	start # 运行并停在main函数上
-	continue # 继续运行
+	(gdb) run	# 开始运行
+	(gdb) start # 运行并停在main函数上
+	(gdb) continue # 继续运行
 	```
 
-- 断点信息 checkpoint
+- 快照信息 checkpoint
+
+	gdb可以在程序执行的过程中保留快照(状态)信息，称之为checkpoint，可以在进来返回到该处再次查看当时的信息，比如内存、寄存器以及部分系统状态。通过设置checkpoint，万一调试的过程中错误发生了但是已经跳过了错误发生的地方，就可以快速返回checkpoint再开始调试，而不用重启程序重新来过。（PS: 类似于游戏存档）
+	
+	```
+	(gdb) checkpoint // 在当前位置设置快照
+	(gdb) info checkpoint
+	(gdb) restart checkpoint-id
+	(gdb) delete checkpoint checkpoint-id
+	```
+
+- 断点 breakpoint
+
+	在一个位置上设置断点，可以对应多个位置，gdb要自动在需要的位置插入断点。在动态库里也可以设置断点，不过其地址在加载后才能解析。 断点的设置有几种方法
+
+	```shell
+	(gdb) break
+	(gdb) b		//缩写
+	(gdb) break [Function Name]		//函数名
+	(gdb) break [File Name]:[Line Number]	//文件名的第几行 
+	(gdb) break [Line Number] 	//第几行
+	(gdb) break *[Address]	// 想在地址0x4007d9 上设定断点 eg: break *0x4007d9
+	(gdb) i line <filename>:<line number>	// 获取对应行在内存中的地址的方法
+	```
+
+	条件断点设置
+
+	```shell
+	(gdb) break [...] if [Condition]
+	(gdb) break [...] thread [Thread-id]
+	
+	eg.
+	(gdb) break main if argc > 1
+	(gdb) break 180 if (string == NULL && i < 0)
+	(gdb) break test.c:34 if (x & y) == 1
+	(gdb) break myfunc if i % (j+3) != 0
+	(gdb) break 44 if strlen(mystring) == 0
+	(gdb) b 10 if ((int)$gdb_strcmp(a,"chinaunix") == 0)
+	(gdb) b 10 if ((int)aa.find("dd",0) == 0)
+	```
+
+	可以用info breakpoints来查看相应断点信息
+
+	```shell
+	info breakpoints
+	```
+
+- 显示检查工具
 
 	
 
