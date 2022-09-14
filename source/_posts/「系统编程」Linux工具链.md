@@ -118,6 +118,15 @@ gcc是编译器套件，它提供了编译的全过程工具。
 ~$> gcc testfun.o test.o -o test    #将testfun.o和test.o链接成test
 # 加载动态链接库
 ~$> gcc hello.c -lpthread -o hello
+# 生成静态链接库
+~$>  cd test
+~$>  gcc -c *.c
+~$>  ar rcs libtest.a *.o
+# 从源文件生成动态链接库
+~$> gcc -fPIC -shared func.c -o libfunc.so
+# 从目标文件生成动态链接库
+~$> gcc -fPIC -c func.c -o func.o
+~$> gcc -shared func.o -o libfunc.so
 ```
 
 ---
@@ -392,6 +401,12 @@ prog2: prog2.o
 	
 prog3: prog3.o sort.o utils.o
 	gcc -o prog3 prog3.o sort.o utils.o
+	
+# 声明clean是伪目标，防止有clean文件存在使得makefile认为此命令无需执行而使得make clean失效
+# 原因：根据依赖关系发现clean命令依赖的内容未发生变化
+.PHONY: clean
+clean:
+        rm *.o temp
 ```
 
 ```makefile
