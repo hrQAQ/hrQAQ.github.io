@@ -310,7 +310,7 @@ info line
 ```shell
 info registers | i reg
 info <variables> | i <var> # 可以用 i var 来查看某个全局或者静态变量在哪个文件定义的
-info locals # 显示当前帧的函数的参数， 配合frame，up和down来使用
+info locals # 显示当前帧的函数的ju'bu
 info args # 显示当前帧的函数的参数， 配合frame，up和down来使用
 info func # 显示所有的函数名
 info files # 显示所有函数名
