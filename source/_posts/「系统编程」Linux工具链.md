@@ -4,6 +4,9 @@ date: 2022-09-08 14:37:41
 thumbnail: https://oss.horik.cn/blog/header-linux-tools.jpg
 categories: 系统编程
 tags:
+    - gcc
+    - gdb
+    - Makefile
     - Linux基础
 ---
 
@@ -107,26 +110,34 @@ gcc是编译器套件，它提供了编译的全过程工具。
 # 选项 -D
 ~$> gcc -DDEBUG -o debug debug.c
 ~$> gcc -DDEBUG=0 -o debug debug.c
-# 选项 -I 手动添加文件头路径
+# 选项 -I dir 将 dir 增加至头文件搜索路径
 ~$> gcc test.c –I../inc -o test
 ~$> gcc hello.c -lpthread -I /lib64/ -o hello
+# 选项 -L dir 将 dir 增加至库文件搜索路径
+# 选项 -I library 指定编译时搜索的库名
+~$> gcc hello.c -L . -lpthread -I /lib64/ -o hello
+
 # 多文件编译--plan A
 ~$> gcc testfun.c test.c -o test
 # 多文件编译--plan B
 ~$> gcc -c testfun.c    #将testfun.c编译成testfun.o
 ~$> gcc -c test.c       #将test.c编译成test.o
 ~$> gcc testfun.o test.o -o test    #将testfun.o和test.o链接成test
-# 加载动态链接库
-~$> gcc hello.c -lpthread -o hello
+
 # 生成静态链接库
 ~$>  cd test
 ~$>  gcc -c *.c
 ~$>  ar rcs libtest.a *.o
+
+# -fPIC PIC 指 Position Independent Code
+# -share 生成一个共享对象，可以与其他对象链接以形成可执行文件。
 # 从源文件生成动态链接库
 ~$> gcc -fPIC -shared func.c -o libfunc.so
 # 从目标文件生成动态链接库
 ~$> gcc -fPIC -c func.c -o func.o
 ~$> gcc -shared func.o -o libfunc.so
+# 加载动态链接库
+~$> gcc hello.c -lpthread -o hello
 ```
 
 ---
