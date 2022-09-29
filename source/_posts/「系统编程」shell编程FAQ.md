@@ -1,5 +1,5 @@
 ---
-title: 「系统编程」shell编程FAQ
+title: 「系统编程」Shell编程FAQ
 date: 2022-09-27 16:32:17
 thumbnail: https://images.unsplash.com/photo-1629624927838-3b39b7fdd33c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80
 categories: 系统编程
@@ -92,6 +92,7 @@ var = 1	# 变量赋值不能有空格
 >> [ERROR!] var：未找到命令
 ```
 
+
 ### 奇怪的引号机制
 
 第一次接触shell的时候在引号这里踩了坑，这里记录一下不同引号的作用
@@ -158,6 +159,7 @@ $0 当前执行的进程名
 $@ 它是$*的另外一种形式，它不使用IFS。
 ```
 
+
 IFS是什么？
 
 ```shell
@@ -186,6 +188,7 @@ if [ -n "$2" ]; then
     echo "Parameter #2 is $2"
 fi
 ```
+
 
 ```shell
 ./test.sh 114
