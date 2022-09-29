@@ -167,12 +167,12 @@ IFS是什么？
 ```shell
 $ IFS='' 	# IFS用于设置`$*`多参数之间的分隔符
 $ set foo bar bam 
-$ echo “$@” 
+$ echo "$@" 
 foo bar bam 
-$ echo “$*” 
+$ echo "$*"
 foobarbam 
 $ unset IFS 
-$ echo “$*”
+$ echo "$*"
 foo bar bam
 ```
 
