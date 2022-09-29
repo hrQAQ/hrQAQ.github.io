@@ -161,20 +161,7 @@ $@ 它是$*的另外一种形式，它不使用IFS。
 ```
 
 
-IFS是什么？
 
-
-```shell
-$ IFS='' 	# IFS用于设置`$*`多参数之间的分隔符
-$ set foo bar bam 
-$ echo "$@" 
-foo bar bam 
-$ echo "$*"
-foobarbam 
-$ unset IFS 
-$ echo "$*"
-foo bar bam
-```
 
 **位置参数**
 
