@@ -101,6 +101,7 @@ ignore:
 theme: inside
 
 mathjax:
+  on: false #是否启用
   inlineQuote: ['$', '$']
   blockQuote: ['$$', '$$']
 

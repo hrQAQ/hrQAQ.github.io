@@ -513,11 +513,11 @@ sh -x scriptname # 打印每个命令的执行结果, 但只用在某些小的�
 ```bash
 # trap 命令必须是脚本中的第一个命令。
 #!/bin/sh 
-trap ‘rm -f /tmp/my_tmp_file_$$’ INT 
-echo creating file /tmp/my_tmp_file_$$ 
-date > /tmp/my_tmp_file_$$ 
+trap ‘rm -f /tmp/my_tmp_file’ INT 
+echo creating file /tmp/my_tmp_file
+date > /tmp/my_tmp_file 
 echo “press interrupt (CTRL-C) to interrupt ....” 
-while [ -f /tmp/my_tmp_file_$$ ]; do 
+while [ -f /tmp/my_tmp_file ]; do 
 	echo File exists sleep 1 
 done
 echo The file no longer exists
