@@ -425,7 +425,7 @@ plugins:
               lang: 'en',							   // 语言(zh-cn或en)
               app_id: 'O0s2Xhjzwtcu7ORUmLo8nJTb-gzGzoHsz',			    										   	
               app_key: 'eufYimn7wHWAgUTn7cmO2Dsn',    										      
-              placeholder: 'Write a comment!',  // 提示符
+              placeholder: '留个爪捏',  // 提示符
               admin_email_hash: 'D58A0A451AFBEBAE33D9C7ABC87FE693', // 可选,管理员邮箱md5,用于显示管理员标志👮‍
               max_nest: 3,					// 嵌套评论深度，太大会影响加载速度
               page_size: 5					// 分页大小
