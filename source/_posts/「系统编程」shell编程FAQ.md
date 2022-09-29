@@ -1,6 +1,7 @@
 ---
 title: 「系统编程」shell编程FAQ
 date: 2022-09-27 16:32:17
+thumbnail: https://images.unsplash.com/photo-1629624927838-3b39b7fdd33c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80
 categories: 系统编程
 tags:
     - shell编程
