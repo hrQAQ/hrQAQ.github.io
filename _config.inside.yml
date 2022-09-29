@@ -410,8 +410,8 @@ plugins:
   - //cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js
 
   # Valine 评论
-  - //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/e64f19ed-9d0a-4f9f-a45d-68f5cbb48776.js
-  - //vkceyugu.cdn.bspapp.com/VKCEYUGU-5a7313a3-81df-49ad-941e-33cab30695e9/8851b28c-a68e-48b4-8043-65bf00db08f7.js
+  - //cdn1.lncld.net/static/js/3.0.4/av-min.js
+  - https://oss.horik.cn/blog/Valine.min.js
   - position: comments
     template: |
       <div id="comment"></div>
@@ -423,8 +423,6 @@ plugins:
               el: comment_el,				// 评论区元素(要求div)
               count_el: comment_count_el,    // 评论计数元素(要求span)
               lang: 'en',							   // 语言(zh-cn或en)
-              emoticon_url: 'https://cloud.panjunwen.com/alu', // 表情包根目录（自行解决文件托管）
-              emoticon_list: ["吐.png", "狂汗.png", "不说话.png"], // 表情包文件列表
               app_id: 'O0s2Xhjzwtcu7ORUmLo8nJTb-gzGzoHsz',			    										   	
               app_key: 'eufYimn7wHWAgUTn7cmO2Dsn',    										      
               placeholder: 'Write a comment!',  // 提示符
