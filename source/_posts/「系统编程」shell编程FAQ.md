@@ -7,10 +7,12 @@ tags:
     - Linux基础
     - shell编程
 ---
-
+[TOC]
 > **\<FAQ\>:= \<Basic\> + \<Cooooool>**
 >
 > 年轻人的自动化脚本启航之旅——shell编程！运行一个脚本，命令行开始跳动不明意义的字符，不觉得这很酷吗？作为一名理工男我觉得这实在是太酷了，很符合我对未来生活的想象，科技并带着趣味...
+
+---
 
 ## 基本语法约定
 
@@ -59,12 +61,54 @@ echo $?	# $?可以读取上一条命令（上一个程序）的退出码
 
 ### 环境变量
 
-环境变量就是工作环境(系统)下的全局变量，列几个我觉得还算有用的
+环境变量就是工作环境(系统)下的全局变量（本质上就是已经提前定义好的变量）
 
 ```dart
 HOME 用于保持注册目录的完全路径名
 PWD 当前工作目录的绝对路径
 PS1 主提示符，特权用户是#，普通用户是$。
+```
+
+**定义环境变量**
+
+```bash
+export environment_variable=xxxxx
+```
+
+使用上面这个语句，当你退出当前的 Terminal，再次打开一个新的 Terminal 时，将无法再次访问 system_programming 。这是因为，我们上次进行的修改，是在一个 bash 的进程中修改的，当我们关闭 Terminal，就终止了这个进程；当再次启动一个新的 Terminal 时，就重新开启了一个新的进程，这个新的进程自然是访问不到别的进程的变量的。
+
+当一个 bash 进程启动时（即，打开一个 Terminal 或者远程 SSH 登录时），该进程会读取 ~/.bashrc 文件来完成初始化。因此，我们只需要把上面提到的 export
+语句写到 ~/.bashrc 文件中就可以了。
+
+为了达到所有用户都可以访问的效果，我们可以把 export 语句写 到 /etc/profile 文件，当系统启动时会读取到该文件。
+
+**使用C语言获取环境变量**
+
+可以使用全局变量`environ`获取所有的环境变量：
+
+```c
+# include <stdio.h>
+extern char** environ;
+int main(int argc, char const* argv[]) {
+    char** p = environ;
+    for (; *p != NULL; p++) {
+        printf("%s\n", *p);
+    }
+    return 0;
+}
+```
+
+还可以使用函数`getenv()` 返回特定的环境变量的值：
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[]) {
+    const char* envName = "SHELL";
+    printf("$SHELL = %s\n", getenv(envName));
+    return 0;
+}
 ```
 
 ### 用户变量
@@ -494,6 +538,41 @@ max 1 2 3
 echo $?
 ```
 
+## PATH
+
+当大家在工作目录中使用 GCC 编译出来了一个可执行文件`a.out`，要运行这个程序的时候是这样进行的：
+
+```bash
+./a.out
+```
+
+或者，直接
+
+```bash
+a.out
+```
+
+这两个都是一样的，都是**直接在 shell 中输入了要执行的文件的文件名**。这是在 bash shell 中执行可执行文件的唯一方式。
+
+但如果我们不在这个可执行文件所在的目录下怎么办？如果我在一个其他目录下，想执行这个程序，就需要用相对路径或绝对路径写出整个路径前缀，这往往是一件非常麻烦的事情。这时候，`PATH`就诞生了。
+
+`PATH`是一个环境变量，这个环境变量指明了**系统默认**的查找可执行文件的路径。你可以在 bash shell 中使用`echo $PATH`打印出你当前的`PATH`，它将如下所示：
+
+```bash
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+这一行输出实际上是几个路径之间用`:`拼接起来的。
+
+有了`PATH`，当你在命令行输入一个程序名时，bash shell 就会去`PATH`所指定的这几个目录中去寻找该程序，如果找不到就会报错。
+
+现在大家知道了吧，我们平常使用的指令`ls`、`mv`等指令没啥神奇的，他们只不过是操作系统预设好的一个个程序，并放在了`PATH`指定的某个路径下，我们输入指令时，其实就相当于是在执行这些程序。
+
+比如，我们可以用`which`来查看这些“内置程序”的具体路径
+
+这一点可以去路径`/usr/bin`下去查看验证一下。
+
+
 ## 调试
 
 bash没有调试工具，只提供了几个辅助参数
@@ -539,4 +618,12 @@ echo The file no longer exists
 好啦，你已经学会shell编程辣！！！~~现在快用shell手搓一个快排吧~~
 
 > FLAG：感觉比较重量级的bash脚本是用来跑文件批处理的（自动化测试|批量运行|批量重命名），python也能干这活儿，不知道有什么优劣区别，有机会实践一下再POST一篇新内容吧
+
+----
+> **Reference**
+>
+> [1] BUAA系统编程课程第三章PPT--01 Shell编程
+>
+>
+> [2] 系统编程课程指导书（非常好指导，爱来自助教）
 
