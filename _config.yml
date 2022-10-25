@@ -99,11 +99,13 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: inside
-
+math:
+  every_page: false
 mathjax:
-  on: false #是否启用
-  inlineQuote: ['$', '$']
-  blockQuote: ['$$', '$$']
+  on: true #是否启用
+  # inlineQuote: ['$', '$']
+  # blockQuote: ['$$', '$$']
+  per_page: false #是否在每个页面都加载
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
