@@ -5,12 +5,12 @@ categories: 编译原理
 thumbnail: https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80
 tags:
     - 理论复习
-    - 数据流分析
-    - 算法
+    - 自动机理论
+    - 正则表达式
 ---
 
 > 本章内容一图以蔽之
-> ![image-20221025151643033](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025151643033.png)
+> ![image-20221025151643033](compiler-Regular expressions and finite automata theory/image-20221025151643033.png)
 
 
 ----
@@ -19,15 +19,15 @@ tags:
 
 代入规则和BNF规则比较直观，消除递归规则使用了**正则表达式中的闭包运算**，最终达成了把文法的多个产生式改写成单个表达式的目标。
 
-![image-20221025115407193](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025115407193.png)
+![image-20221025115407193](compiler-Regular expressions and finite automata theory/image-20221025115407193.png)
 
-<img src="%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025115624709.png" alt="image-20221025115624709" style="zoom:67%;" />
+<img src="compiler-Regular expressions and finite automata theory/image-20221025115624709.png" alt="image-20221025115624709" style="zoom:67%;" />
 
 ## 正则表达式2正则文法
 
 前文的逆运算
 
-![image-20221025115252959](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025115252959.png)
+![image-20221025115252959](compiler-Regular expressions and finite automata theory/image-20221025115252959.png)
 
 ## NFA2DFA
 
@@ -35,11 +35,11 @@ tags:
 >
 > $\varepsilon-closure$的计算方式
 >
-> ![image-20221025140106303](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025140106303.png)
+> ![image-20221025140106303](compiler-Regular expressions and finite automata theory/image-20221025140106303.png)
 >
 > $I_{x}$的计算方式
 >
-> ![image-20221025140118319](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025140118319.png)
+> ![image-20221025140118319](compiler-Regular expressions and finite automata theory/image-20221025140118319.png)
 
 多值的状态转移函数导致了NFA在计算机工程上很难实现，每次输入新字符时无法判断下一状态是什么（如果硬要写的话可能需要加上一些试探回溯的步骤），所幸已经有证明：任一NFA都可以经过确定化的步骤后转化为DFA。下文介绍一种NFA的确定化算法。
 
@@ -55,7 +55,7 @@ tags:
 
 ## DFA的最小化（化简）
 
-![image-20221025150509755](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025150509755.png)
+![image-20221025150509755](compiler-Regular expressions and finite automata theory/image-20221025150509755.png)
 
 ## 正则表达式2DFA
 
@@ -65,8 +65,8 @@ tags:
 2. 画出每个推导式的DFA
 3. 根据证明的方式，聚合多个DFA
 
-![image-20221025151351934](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025151351934.png)
+![image-20221025151351934](compiler-Regular expressions and finite automata theory/image-20221025151351934.png)
 
 ## DFA2正则表达式
 
-![image-20221025151305790](%E3%80%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%90%86%E8%AE%BA/image-20221025151305790.png)
+![image-20221025151305790](compiler-Regular expressions and finite automata theory/image-20221025151305790.png)
