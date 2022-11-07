@@ -91,14 +91,14 @@ tags: [拥塞控制, PCC，论文笔记]
 > - reasoning about fundamental tradeoffs in parameter settings is difficult【推理参数的调整是很难的，不成体系】
 > - there is no theoretical understanding of what happens when Allegro senders with different utility functions interact with each other【异构发送者的互动？】
 >
-> <img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107021420840.png" alt="image-20221107021420840" style="zoom:50%;" />
+> <img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107021420840.png" alt="image-20221107021420840" style="zoom:50%;" />
 >
 > Second, Allegro inherently ignores the information reflected in the utility when deciding on step size
 >
 > - ε是固定的，大了难以收敛，小了收敛太慢 	
 > - 没有充分利用utility 反应的信息
 >
-> <img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107021351635.png" alt="image-20221107021351635" style="zoom: 50%;" />
+> <img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107021351635.png" alt="image-20221107021351635" style="zoom: 50%;" />
 
 为了解决15年PCC模型的问题，Vivace使用了在线学习+凸优化的思想，重新实现PCC高层架构的两个关键部分：（1）效用函数框架，以及（2）学习速率控制算法，达到了一个比较好的效果：
 
@@ -124,7 +124,7 @@ tags: [拥塞控制, PCC，论文笔记]
 
 ## 3 Vivace’s Utility Framework
 
-![image-20221106141724415](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221106141724415.png)
+![image-20221106141724415](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221106141724415.png)
 
 为什么要用梯度呢？
 
@@ -154,9 +154,9 @@ tags: [拥塞控制, PCC，论文笔记]
 
 > In a system of n Vivace senders, each ploss-resilient, the loss rate L of each sender i in equilibrium (with no random loss) satisfies:
 >
-> ![image-20221107171538989](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107171538989.png)
+> ![image-20221107171538989](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107171538989.png)
 >
-> <img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107171724313.png" alt="image-20221107171724313" style="zoom:50%;" />
+> <img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107171724313.png" alt="image-20221107171724313" style="zoom:50%;" />
 >
 > 推论：When n → ∞, the congestion loss rate on convergence approaches the random loss resilience p!【发送者趋近于n时损失率趋近设定的忍受率】
 >
@@ -168,7 +168,7 @@ Vivace可以通过修改异构发送者的效用方程达到控制链路占用�
 
 > Vivace’s utility function framework, in contrast, provides flexibility in resource-allocation. 【ci调整了对损失率的惩罚值】
 >
-> ![image-20221107180645983](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107180645983.png)
+> ![image-20221107180645983](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107180645983.png)
 
 不过我猜异构发送者不支持时延based，不然就不会只写一个loss-based的了。
 
@@ -177,7 +177,7 @@ Vivace可以通过修改异构发送者的效用方程达到控制链路占用�
 >
 > $c_{i}$参数的设置方法：
 >
-> ![image-20221107180748101](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107180748101.png)
+> ![image-20221107180748101](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107180748101.png)
 
 ## 4 Vivace’s Rate Control
 
@@ -199,13 +199,13 @@ Vivace可以通过修改异构发送者的效用方程达到控制链路占用�
 
 先测试两个MI的u值，然后计算梯度，最后给梯度乘一个系数
 
-![image-20221107185845223](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107185845223.png)
+![image-20221107185845223](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107185845223.png)
 
-> ![image-20221107182159933](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107182159933.png)	![image-20221107182321850](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107182321850.png)![image-20221107182404003](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107182404003.png)
+> ![image-20221107182159933](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107182159933.png)	![image-20221107182321850](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107182321850.png)![image-20221107182404003](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107182404003.png)
 
 当然，光是这样收敛速度还是不太够，作者又加上了PCC的老思路——信心模块。对于同向的增长，我们让他加大力度。对于突然变向的情况，我们把信心模块重置。
 
-> ![image-20221107182504988](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107182504988.png)
+> ![image-20221107182504988](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107182504988.png)
 
 接着，作者提出了一个异常处理的机制——梯度可能会因为偶发因素而变得异常高，所以需要给步长加一个限定值
 
@@ -232,7 +232,7 @@ Vivace可以通过修改异构发送者的效用方程达到控制链路占用�
 
 这个补丁是对一种奇怪的现象（偶尔，测量结果会导致 "反直觉 "的观察）进行处理——发送速率升高反而延时降低，作者认为这是一个不太可能发生的事情，所以要recheck一次。如果结果显示确实是这样的，那就把doublecheck的Δr 取个平均。
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107190005677.png" alt="image-20221107190005677" style="zoom:50%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107190005677.png" alt="image-20221107190005677" style="zoom:50%;" />
 
 > even with complex conditions it is highly unlikely that sending faster is the cause of lower loss; more likely, this is due to measurement noise or changing conditions (e.g., another sender reducing its rate).
 
@@ -262,7 +262,7 @@ Vivace可以通过修改异构发送者的效用方程达到控制链路占用�
 
 PCC Vivace很好地解决了缓冲区膨胀的问题，因为他是一个考虑了时延的算法
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107184034911.png" alt="image-20221107184034911" style="zoom:50%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107184034911.png" alt="image-20221107184034911" style="zoom:50%;" />
 
 ### Rapid reaction to network changes (10-100Mbps, 10-100ms RTT，0-1% random loss)
 
@@ -271,31 +271,31 @@ PCC Vivace很好地解决了缓冲区膨胀的问题，因为他是一个考虑�
 - BBR不能快速应对RTT的变化【因为BBR中probeRTT、probeBDP是不同时间进行的？】
 - Allegro不能在瓶颈带宽下降的时候快速减小发送速率——这会导致丢包
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107184403449.png" alt="image-20221107184403449" style="zoom:50%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107184403449.png" alt="image-20221107184403449" style="zoom:50%;" />
 
 ### Fair equilibrium (100Mbps, 30ms RTT, 75KB buffer)
 
 肉眼可见，PCC Vivace的收敛性（稳定、速度）更好
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107184906714.png" alt="image-20221107184906714" style="zoom:50%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107184906714.png" alt="image-20221107184906714" style="zoom:50%;" />
 
 ### TCP Friendliness
 
 - BBR占据接近15%的带宽（不管有多少个TCP竞争者）
 - PCC Vivace在网络不拥堵（发送者少）的情况下，抢不过TCP，当TCP发送者多起来的时候，PCC Vivace可以抢资源
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107185109029.png" alt="image-20221107185109029" style="zoom:50%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107185109029.png" alt="image-20221107185109029" style="zoom:50%;" />
 
 ### Flexible equilibrium by tuning utility knobs
 
 通过调整Ci，可以修改PCC Vivace流在带宽中的占比（纯PCC Vivace竞争）
 
-![image-20221107185512324](%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107185512324.png)
+![image-20221107185512324](「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107185512324.png)
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107185430781.png" alt="image-20221107185430781" style="zoom: 67%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107185430781.png" alt="image-20221107185430781" style="zoom: 67%;" />
 
 ### Limitation in Extremely Dynamic Networks
 
 LTE 有待改进的地方：可能是因为在**急剧**变化的网络下Vivace计算的结果来的不够及时。
 
-<img src="%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91PCC%20Vivace%20Online-Learning%20Congestion%20Control/image-20221107191051065.png" alt="image-20221107191051065" style="zoom:67%;" />
+<img src="「拥塞控制算法」PCC-Vivace阅读笔记/image-20221107191051065.png" alt="image-20221107191051065" style="zoom:67%;" />
