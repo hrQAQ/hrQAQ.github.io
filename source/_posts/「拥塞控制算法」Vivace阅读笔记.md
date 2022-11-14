@@ -46,7 +46,7 @@ tags: [拥塞控制, PCC, 论文笔记]
 > - BBR and PCC Both fail to achieve **optimal low latency** and exhibit far-from ideal tradeoffs between **convergence speed and stability.**【BBR和PCC都没有一个好的收敛性】
 > - BBR exhibits high rate variance and high packet loss rate upon convergence.【BBR稳定性差、收敛时丢包多】
 > - PCC convergence time is overly long【PCC收敛时间长】
-> - BBR’s model of the network does not reflect the complexities of reality, performance can suffer severely.【  】
+> - BBR’s model of the network does not reflect the complexities of reality, performance can suffer severely.【 BBR白盒建模难以全面考虑真实的复杂网络 】
 > - BBR and PCC are both highly aggressive towards TCP【BBR和PCC都对TCP不友好】
 
 终于，作者把能拥塞算法界的所有算法都狠狠批判了一遍以后，提出了自己的解决方案（I solved this problem），并且给出了自己在这个方案上的主要工作内容（也是本文主要介绍的内容）。
@@ -55,7 +55,7 @@ tags: [拥塞控制, PCC, 论文笔记]
 
 > Vivace adopts the high-level architecture of PCC – a utility function framework and a learning ratecontrol algorithm – but realizes both components differently.
 
-在第一个部件，即效用方程上，Vivace的贡献在于引进了**learning-theory-informed framework**【所以这个到底是啥啊啊啊啊】来做utility的计算（PCC在效用函数的选择上显得很随意），并且这一次Vivace考虑了**时延最小化**和**TCP友好性**（PCC没有证明考虑时延时的收敛性，PCC没有做到TCP友好性）【我感觉考虑了时延就等于考虑了TCP友好性？？？？】。
+在第一个部件，即效用方程上，Vivace的贡献在于引进了**learning-theory-informed framework**【所以这个到底是啥啊啊啊啊】来做utility的计算（PCC在效用函数的选择上显得很随意），并且这一次Vivace考虑了**时延最小化**和**TCP友好性**（PCC没有证明考虑时延时的收敛性，PCC没有做到TCP友好性）【我考虑了时延就等于考虑了TCP友好性】。
 
 在第二个部件，即速率控制算法上，Vivace使用了基于梯度上升（一种可证明的渐进式在线学习优化）的速率控制算法，达到了：
 
@@ -106,7 +106,7 @@ tags: [拥塞控制, PCC, 论文笔记]
 >
 > - Second, Vivace employs provably optimal gradient-ascent-based no-regret online optimization [37] to adjust sending rates, taking into account not only the direction (increase/decrease) that is more beneficial utility-wise, but also the extent to which increasing/decreasing the rate impacts utility.【基于梯度上升+无悔在线优化调整发送速率，保证收敛速度】
 
-之前一直提到无悔学习，或者说无遗憾学习（no-regret learning）,之前学经管的时候做过一点最小后悔值的计算，但对于无悔学习的收敛性没有认识，这里我补充了一些背景知识（**非常粗浅的了解，还有待学习**）【（选择更好的u这里体现了无悔？】
+之前一直提到无悔学习，或者说无遗憾学习（no-regret learning）,之前学经管的时候做过一点最小后悔值的计算，但对于无悔学习的收敛性没有认识，这里我补充了一些背景知识（**非常粗浅的了解，还有待学习**）【（选择更好的u这里体现了无悔？确实如此，后来我了解到梯度下降就是一种no-regret算法】
 
 > 一般来讲，采用基于后悔值的学习方法以后，每个智能体根据各个行为的后悔值做出行为选择。如果一种算法能够保证最大后悔值渐进的变为零，那么该种算法就可以被称作无悔学习算法。
 > 最著名的无悔学习算法就是后悔匹配算法(regret matching)，在每一个决策时刻，每个智能体按照每个行为的后悔值的概率做出选择，即具有最大概率的行为被选中的机会越大。在多智能体系统中，如果所有的智能体都采用相同的无悔学习算法，例如后悔匹配算法，那么所有智能体的联合行为将渐进地收敛于一组无悔点。换句话说，一组无悔点也可以被看作一种理想情况或者说一种高效的运行环境。在无悔点集合上，每个智能体所得到的平均回报不少于其它行为所能产生的回报。
